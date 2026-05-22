@@ -7,28 +7,14 @@ Calculate the average code word length, entropy, variance, redundancy, and effic
 # Tools Required:
 # Program:
 ```
-# ============================================
-# EXPERIMENT 2
-# Huffman Coding and Shannon-Fano Coding
-# ============================================
-# Google Colab Compatible Code
-# ============================================
-
 import math
 from collections import Counter
 import heapq
 import pandas as pd
 
-# ------------------------------------------------
-# SOURCE SYMBOLS AND PROBABILITIES
-# ------------------------------------------------
 
 symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 probabilities = [0.125, 0.0625, 0.25, 0.0625, 0.125, 0.125, 0.25]
-
-# ------------------------------------------------
-# ENTROPY CALCULATION
-# ------------------------------------------------
 
 def calculate_entropy(probs):
     return -sum(p * math.log2(p) for p in probs)
@@ -37,9 +23,6 @@ entropy = calculate_entropy(probabilities)
 
 print("Entropy H(X) =", round(entropy, 4), "bits\n")
 
-# =========================================================
-# HUFFMAN CODING
-# =========================================================
 
 class Node:
     def __init__(self, prob, symbol, left=None, right=None):
@@ -126,10 +109,6 @@ V_huffman = variance(huffman_codes, probabilities, symbols, L_huffman)
 eff_huffman = entropy / L_huffman
 red_huffman = 1 - eff_huffman
 
-# =========================================================
-# SHANNON-FANO CODING
-# =========================================================
-
 sf_codes = {}
 
 # Sort symbols based on probabilities
@@ -208,10 +187,6 @@ V_sf = variance(sf_codes, probabilities, symbols, L_sf)
 eff_sf = entropy / L_sf
 red_sf = 1 - eff_sf
 
-# =========================================================
-# RESULT TABLES
-# =========================================================
-
 print("\n========== HUFFMAN RESULT ==========\n")
 
 huffman_table = pd.DataFrame({
@@ -229,7 +204,6 @@ print("Variance =", round(V_huffman, 4))
 print("Efficiency =", round(eff_huffman * 100, 2), "%")
 print("Redundancy =", round(red_huffman * 100, 2), "%")
 
-# ---------------------------------------------------------
 
 print("\n========== SHANNON-FANO RESULT ==========\n")
 
